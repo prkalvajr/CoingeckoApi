@@ -28,7 +28,7 @@ namespace _angularJS.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<CoinModel>(data);
+                    var result = JsonConvert.DeserializeObject<List<CoinModel>>(data);
                     return View("Index", result);
                 }
 

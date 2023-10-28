@@ -14,7 +14,7 @@
         public decimal Low_24h { get; set; }
         public decimal Proce_change_24h { get; set; }
         public decimal Circulating_supply { get; set; }
-        public decimal Total_supply { get; set; }
+        public decimal? Total_supply { get; set; }
         public decimal Ath { get; set; }
         public decimal Ath_change_percentage { get; set; }
         public DateTime Ath_date { get; set; }
