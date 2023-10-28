@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+﻿using _angularJS.Models;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
 namespace _angularJS.Controllers
@@ -14,7 +16,7 @@ namespace _angularJS.Controllers
             _httpClient.BaseAddress = new Uri("https://api.coingecko.com/api/v3/");
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "CoinTech");
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "apikey");
+            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "");
         }
 
         public async Task<IActionResult> IndexAsync()
@@ -26,13 +28,8 @@ namespace _angularJS.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-
-
-
-                    // Deserialize the JSON data into a model class (if applicable)
-                    // Example: var result = JsonConvert.DeserializeObject<MyModel>(data);
-
-                    return View("Index", data);
+                    var result = JsonConvert.DeserializeObject<CoinModel>(data);
+                    return View("Index", result);
                 }
 
                 return View();
